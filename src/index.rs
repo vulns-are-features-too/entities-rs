@@ -9,14 +9,14 @@ use crate::entity::Entity;
 #[derive(Debug, Default)]
 pub struct UniqueIndex<K, T>
 where
-    T: Entity<T>,
+    T: Entity,
 {
     map: BTreeMap<K, Id<T>>,
 }
 
 impl<K, T> UniqueIndex<K, T>
 where
-    T: Entity<T>,
+    T: Entity,
     K: Ord,
 {
     pub fn insert(&mut self, key: K, id: Id<T>) -> Option<Id<T>> {
@@ -35,14 +35,14 @@ where
 #[derive(Debug, Default)]
 pub struct ReverseIndex<K, T>
 where
-    T: Entity<T>,
+    T: Entity,
 {
     map: BTreeMap<K, BTreeSet<Id<T>>>,
 }
 
 impl<K, T> ReverseIndex<K, T>
 where
-    T: Entity<T>,
+    T: Entity,
     K: Ord,
 {
     pub fn insert(&mut self, key: K, id: Id<T>) -> bool {

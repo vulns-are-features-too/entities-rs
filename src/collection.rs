@@ -6,14 +6,14 @@ use crate::entity::Entity;
 #[derive(Debug, Default)]
 pub struct EntityCollection<T>
 where
-    T: Entity<T>,
+    T: Entity,
 {
     map: BTreeMap<Id<T>, T>,
 }
 
 impl<T> EntityCollection<T>
 where
-    T: Entity<T>,
+    T: Entity,
 {
     pub fn insert(&mut self, e: T) -> Option<T> {
         self.map.insert(e.id(), e)
@@ -37,14 +37,14 @@ type EntityRef<T> = Rc<RefCell<T>>;
 #[derive(Debug, Default)]
 pub struct SharedEntityCollection<T>
 where
-    T: Entity<T>,
+    T: Entity,
 {
     map: BTreeMap<Id<T>, EntityRef<T>>,
 }
 
 impl<T> SharedEntityCollection<T>
 where
-    T: Entity<T>,
+    T: Entity,
 {
     pub fn insert(&mut self, e: T) -> Result<EntityRef<T>, T> {
         let id = e.id();
